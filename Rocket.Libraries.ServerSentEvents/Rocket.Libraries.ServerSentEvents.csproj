@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <AssemblyName>Rocket.Libraries.ServerSentEvents</AssemblyName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>../rocket.rules.ruleset</CodeAnalysisRuleSet>
