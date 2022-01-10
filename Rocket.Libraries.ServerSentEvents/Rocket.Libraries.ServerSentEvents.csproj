@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>0.0.2</Version>
+    <AssemblyName>Rocket.Libraries.ServerSentEvents</AssemblyName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>../rocket.rules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>Latest</LangVersion>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Nyingi Maina</Authors>
+    <Company>Rocket Libraries</Company>
+    <PackageDescription>Easy to setup and use C# library for facilitating streaming of messages from server to client.</PackageDescription>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
