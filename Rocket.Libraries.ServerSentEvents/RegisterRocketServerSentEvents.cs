@@ -2,11 +2,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Rocket.Libraries.ServerSentEvents
 {
-    public static  class RocketServerSentEventsRegistration
+    public static class RocketServerSentEventsRegistration
     {
-        public static void SetupRocketServerSentEventsSingleton(this IServiceCollection services)
+        public static IServiceCollection SetupRocketServerSentEventsSingleton (this IServiceCollection services)
         {
-            services.AddSingleton<IEventQueue, EventQueue>();
+            services.AddSingleton<IEventQueue, EventQueue> ();
+            return services;
         }
     }
 }
