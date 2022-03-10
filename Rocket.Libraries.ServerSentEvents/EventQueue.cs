@@ -25,8 +25,8 @@ namespace Rocket.Libraries.ServerSentEvents
         /// </summary>
         /// <param name="queueId">A value uniquely identifying the queue to add the messages to</param>
         /// <param name="messages">Collection of messages</param>
-        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\n"</param>
-        Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\n");
+        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\\n"</param>
+        Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\\n");
 
         
         /// <summary>
@@ -34,8 +34,8 @@ namespace Rocket.Libraries.ServerSentEvents
         /// </summary>
         /// <param name="queueId">A value uniquely identifying the queue to add the messages to</param>
         /// <param name="message">The message to be added to the queue</param>
-        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\n"</param>
-        Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\n");
+        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\\n"</param>
+        Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\\n");
     }
 
     public class EventQueue : IEventQueue
@@ -72,7 +72,7 @@ namespace Rocket.Libraries.ServerSentEvents
             }
         }
 
-        public async Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\n")
+        public async Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\\n")
         {
             try
             {
@@ -149,7 +149,7 @@ namespace Rocket.Libraries.ServerSentEvents
             return queueId.ToString().ToLower();
         }
 
-        public async Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\n")
+        public async Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\\n")
         {
             await EnqueueManyAsync(queueId, new List<string>{ message},lineDelimiter);
 
