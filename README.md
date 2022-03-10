@@ -19,7 +19,7 @@ Install the [package from nuget](https://www.nuget.org/packages/Rocket.Libraries
 
 1. Include in your ***startup.cs*** file.
 
-`using ServerSentEvents;`
+`using Rocket.Libraries.ServerSentEvents;`
 
 2. Register services auth library in your ***ConfigureServices*** method.
 
