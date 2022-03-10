@@ -8,11 +8,34 @@ namespace Rocket.Libraries.ServerSentEvents
 {
     public interface IEventQueue
     {
+        /// <summary>
+        /// Sends the terminiation message to the client. ("---terminate---").
+        /// </summary>
+        /// <param name="queueId">A value uniquely identifying the queue to close.</param>
         Task CloseAsync(object queueId);
+        
+        /// <summary>
+        /// Gets the next batch of messages from the queue
+        /// </summary>
+        /// <param name="queueId">A value uniquely identifying the queue to read from.</param>
         Task DequeueAsync(object queueId);
-        Task EnqueueManyAsync(object queueId, IEnumerable<string> messages);
+        
+        /// <summary>
+        /// Adds multiple messages to the queue.
+        /// </summary>
+        /// <param name="queueId">A value uniquely identifying the queue to add the messages to</param>
+        /// <param name="messages">Collection of messages</param>
+        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\n"</param>
+        Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\n");
 
-        Task EnqueueSingleAsync(object queueId, string message);
+        
+        /// <summary>
+        /// Adds a single message to the queue.
+        /// </summary>
+        /// <param name="queueId">A value uniquely identifying the queue to add the messages to</param>
+        /// <param name="message">The message to be added to the queue</param>
+        /// <param name="lineDelimiter">A string to delimit lines. If none is specified, default is "\n"</param>
+        Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\n");
     }
 
     public class EventQueue : IEventQueue
@@ -49,7 +72,7 @@ namespace Rocket.Libraries.ServerSentEvents
             }
         }
 
-        public async Task EnqueueManyAsync(object queueId, IEnumerable<string> messages)
+        public async Task EnqueueManyAsync(object queueId, IEnumerable<string> messages,string lineDelimiter = "\n")
         {
             try
             {
@@ -59,8 +82,8 @@ namespace Rocket.Libraries.ServerSentEvents
                 {
                     messageQueue.Add(queueIdString, string.Empty);
                 }
-                var combinedMessage = string.Join("<br/>", messages);
-                messageQueue[queueIdString] += "<br/>" + combinedMessage;
+                var combinedMessage = string.Join(lineDelimiter, messages);
+                messageQueue[queueIdString] += lineDelimiter + combinedMessage;
             }
             finally
             {
@@ -126,9 +149,9 @@ namespace Rocket.Libraries.ServerSentEvents
             return queueId.ToString().ToLower();
         }
 
-        public async Task EnqueueSingleAsync(object queueId, string message)
+        public async Task EnqueueSingleAsync(object queueId, string message,string lineDelimiter = "\n")
         {
-            await EnqueueManyAsync(queueId, new List<string>{ message});
+            await EnqueueManyAsync(queueId, new List<string>{ message},lineDelimiter);
 
         }
     }
