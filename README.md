@@ -124,4 +124,4 @@ If however your client is using JavaScript, then the [Receiving events from the 
 ### Note On Closing The Queue.
 Once you're done sending messages to the client, you should call the ``` Task CloseAsync(Object queueId) ``` method on the server (as shown in the ***Writing To The Queue*** section above)
 
-Calling this message on the server, causes a special termination message (**\-\-\-terminate\-\-\-**) to be inserted into the queue. When your client receives this message, then not additional messages from the specific queue will ever be sent by the server, so it is safe now to close the the connection and stop polling.
+Calling this message on the server, causes a special termination message (**\-\-\-terminate\-\-\-**) to be inserted into the queue. When your client receives this message, then no additional messages from the specific queue will ever be sent by the server, so it is safe now to close the the connection and stop polling.
